@@ -3,9 +3,10 @@ package br.com.impacta.controller;
 import java.util.Date;
 import java.util.List;
 
-
+import br.com.impacta.model.Beneficiario;
 import br.com.impacta.model.Colabora;
 import br.com.impacta.repository.ColaboraRepository;
+import br.com.impacta.servicos.BeneficiarioServicos;
 import br.com.impacta.servicos.ColaboraServicos;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ColaboraController {
 	@Operation(summary="Para criar Colaboraçao basta informar idcomp,idusu,obs ")
 	
 	@PostMapping("/cria_Colabora/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}")	
-	public Colabora criaColaboracao(@PathVariable("nomeBeneficiario") String nomeBeneficiario,
+	public Colabora criaColaboracao(@PathVariable("nomeColaborador") String nomeBeneficiario,
 			@PathVariable("Obs") String obs,
 			@PathVariable("Idcamp") int idCamp,
 			@PathVariable("Idusu") int idUsu,
@@ -40,7 +41,7 @@ public class ColaboraController {
 		
 	 var dt =  new Date();
 	 Colabora col = new Colabora();
-		col.setNomeBeneficiario(nomeBeneficiario);
+		col.setNomeColaborador(nomeColaborador);
 		col.setObs(obs);
 		col.setIdcamp(idCamp);
 		col.setIdusu(idUsu);
@@ -48,6 +49,12 @@ public class ColaboraController {
 		col.setTipo(tipo);
 		col.setDelet(" ");
 		col.setDtcad(dt);
+		
+		
+		 var dt =  new Date();
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		 Date result = null;
+		 result  = format.parse(dtEvento);
 		
 		try {
 		var ret = repository.save(col);
@@ -62,7 +69,78 @@ public class ColaboraController {
 		}
 	}
 	
+	@Operation(summary="Para pesquisar toso os Colaboradores")
+	@GetMapping("/PesquisarAllColaboradores/")	
+	public List<Colabora> pesquisarAllColaboradores(){		
+		ColaboraServicos s =new ColaboraServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqALl();
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Colabora> col = new ArrayList<Colabora>();
+			return col;
+			
+		}
+		
+		
+		
+	}
 	
+	@Operation(summary="Para pesquisar Colaborador por ID")
+	@GetMapping("/PesquisarByIDColaborador/{ID}")	
+	public Colabora PesquisarByIDColaborador(
+			@PathVariable("ID") Long id){		
+		ColaboraServicos s =new ColaboraServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorId(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			Colabora catServ = new Colabora();
+			col.setNomeColaborador("Não encontrou Colaborador por ID");
+			return col;
+			
+		}
+		
+		
+		
+	}
+	
+	
+	@Operation(summary="Para pesquisar Todos Beneficiarios")
+	@GetMapping("/PesquisarByUsuario/{IdUsu}")	
+	public List<Colabora> PesquisarByUsuario(
+			@PathVariable("IdUsu") int id){		
+		ColaboraServicos s =new ColaboraServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorUsuario(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Colabora> col = new ArrayList<Colabora>();
+			return col;
+			
+		}
+		
+		
+		
+	}
 	
 	
 	

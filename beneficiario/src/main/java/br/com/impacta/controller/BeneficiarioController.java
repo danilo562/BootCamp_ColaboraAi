@@ -38,6 +38,9 @@ public class BeneficiarioController {
 			@PathVariable("tipo") String tipo) {
 		
 	 var dt =  new Date();
+	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 Date result = null;
+	 result  = format.parse(dtEvento);
 	 Beneficiario col = new Beneficiario();
 		col.setNomeBeneficiario(nomeBeneficiario);
 		col.setObs(obs);
@@ -58,6 +61,81 @@ public class BeneficiarioController {
 			return col;
 		}
 	}
+	
+
+	@Operation(summary="Para pesquisar toso os Beneficiarios")
+	@GetMapping("/PesquisarAllBeneficiarios/")	
+	public List<Beneficiario> pesquisarAllBeneficiarios(){		
+		BeneficiarioServicos s =new BeneficiarioServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqALl();
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Beneficiario> col = new ArrayList<Beneficiario>();
+			return col;
+			
+		}
+		
+		
+		
+	}
+	
+	@Operation(summary="Para pesquisar Beneficiario por ID")
+	@GetMapping("/PesquisarByIDBeneficiario/{ID}")	
+	public Beneficiario PesquisarByIDBeneficiario(
+			@PathVariable("ID") Long id){		
+		BeneficiarioServicos s =new BeneficiarioServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorId(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			Beneficiario catServ = new Beneficiario();
+			col.setNomeBeneficiario("Não encontrou Beneficiario por ID");
+			return col;
+			
+		}
+		
+		
+		
+	}
+	
+	
+	@Operation(summary="Para pesquisar Todos Beneficiarios")
+	@GetMapping("/PesquisarByUsuario/{IdUsu}")	
+	public List<Beneficiario> PesquisarByUsuario(
+			@PathVariable("IdUsu") int id){		
+		BeneficiarioServicos s =new BeneficiarioServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorUsuario(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Beneficiario> col = new ArrayList<Beneficiario>();
+			return col;
+			
+		}
+		
+		
+		
+	}
+	
 }
 	
 	
