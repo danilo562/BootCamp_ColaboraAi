@@ -1,4 +1,6 @@
 package br.com.impacta.controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -29,26 +31,29 @@ public class CampanhaController {
 			+ "/{local}/{dtEvento}/{idUsu}")	
 	public Campanha criaCategoriaCampanha(@PathVariable("nomeCampanha") String nomeCampanha,
 			@PathVariable("descricaoCampanha") String descricaoCampanha,
-			@PathVariable("cidade") String nomeResponsavel,
-			@PathVariable("estado") String categoria,
-			@PathVariable("cep") String email,
+			@PathVariable("nomeResponsavel") String nomeResponsavel,
+			@PathVariable("categoria") String categoria,
+			@PathVariable("email") String email,
 			@PathVariable("telefone") String telefone,
 			@PathVariable("site") String site,
 			@PathVariable("local") String local,
 			@PathVariable("dtEvento") String dtEvento,
-			@PathVariable("idUsu") String idUsu){		
+			@PathVariable("idUsu") int idUsu) throws ParseException{		
 		
 	 var dt =  new Date();
+	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 Date result = null;
+	 result  = format.parse(dtEvento);
 	 Campanha catServ = new Campanha();
 	 catServ.setNomeCamp(nomeCampanha);
 	 catServ.setDescricao(descricaoCampanha);
 	 catServ.setNomeResponsavel(nomeResponsavel);
-	 catServ.setIdCategoria(categoria);
+	 //catServ.setIdCategoria(0);
 	 catServ.setEmail(email);
 	 catServ.setTelefone(telefone);
 	 catServ.setSite(site);
 	 catServ.setLocal(local);
-	 catServ.setDtEvento(dtEvento);
+	 catServ.setDtEvento(result);
 	 catServ.setIdusu(idUsu);
 	 catServ.setDelet(" ");
 	 catServ.setDtcad(dt);
