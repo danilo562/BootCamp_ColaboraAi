@@ -1,6 +1,7 @@
 package br.com.impacta.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class CampanhaController {
 	@Autowired
 	private CampanhaRepository repository;
+	
+	
 	@Operation(summary="Para criar campanha")
 	@PostMapping("/cria_Campanha/{nomeCampanha}/{descricaoCampanha}/{nomeResponsavel}/{categoria}/{email}/{telefone}/{site}"
 			+ "/{local}/{dtEvento}/{idUsu}")	
@@ -73,6 +76,81 @@ public class CampanhaController {
 		
 		
 	}
+	
+	
+	@Operation(summary="Para pesquisar Todas Campanhas")
+	@GetMapping("/PesquisarAllCampanha/")	
+	public List<Campanha> pesquisarAllCampanha(){		
+		CampanhaServicos s =new CampanhaServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqALl();
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Campanha> catServ = new ArrayList<Campanha>();
+			return catServ;
+			
+		}
+		
+		
+		
+	}
+	
+	@Operation(summary="Para pesquisar Campanha por ID")
+	@GetMapping("/PesquisarByIDCampanha/{ID}")	
+	public Campanha PesquisarByIDCampanha(
+			@PathVariable("ID") Long id){		
+		CampanhaServicos s =new CampanhaServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorId(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+		Campanha catServ = new Campanha();
+		catServ.setNomeCamp("Não encontrou campanha por ID");
+			return catServ;
+			
+		}
+		
+		
+		
+	}
+	
+	
+	@Operation(summary="Para pesquisar Todas Campanhas")
+	@GetMapping("/PesquisarByUsuario/{IdUsu}")	
+	public List<Campanha> PesquisarByUsuario(
+			@PathVariable("IdUsu") int id){		
+		CampanhaServicos s =new CampanhaServicos(repository);
+		
+			
+		try {
+			
+		var ret = s.pesqPorUsuario(id);
+		
+		return ret;
+		}catch (Exception e) {
+			var a =e.getMessage();
+			var r=a;
+			List<Campanha> catServ = new ArrayList<Campanha>();
+			return catServ;
+			
+		}
+		
+		
+		
+	}
+	
 	
 	/*
 	 * @Operation(summary="Para criar campanha")

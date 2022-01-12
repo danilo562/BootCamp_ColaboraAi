@@ -48,7 +48,19 @@ public class CampanhaServicos {
 		
 	}
 	
-	
-	
+public List<Campanha> pesqALl() {
+	var ret = repository.findAll();
+	return ret;
+}
+
+public Campanha pesqPorId(Long id) {
+	var ret = repository.findById(id).orElseThrow();
+	return ret;
+}
+
+public List<Campanha> pesqPorUsuario(int id) {
+	var ret = repository.findByIdusu(id);
+	return ret;
+}
 
 }
