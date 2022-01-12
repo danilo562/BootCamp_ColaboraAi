@@ -35,12 +35,18 @@ public class Beneficiario implements Serializable{
 	
 	@Column(nullable = true)
 	private String delet;
+	
+	@Column(nullable = true)
+	private String nomeBeneficiario;
+	
 
 	public Beneficiario() {
 		super();
 	}
 
-	public Beneficiario(Long idbeneficiario, int idcamp, int idusu, String obs, Date dtcad, String delet) {
+
+	public Beneficiario(Long idbeneficiario, int idcamp, int idusu, String obs, Date dtcad, String delet,
+			String nomeBeneficiario) {
 		super();
 		this.idbeneficiario = idbeneficiario;
 		this.idcamp = idcamp;
@@ -48,64 +54,90 @@ public class Beneficiario implements Serializable{
 		this.obs = obs;
 		this.dtcad = dtcad;
 		this.delet = delet;
+		this.nomeBeneficiario = nomeBeneficiario;
 	}
+
 
 	public Long getIdbeneficiario() {
 		return idbeneficiario;
 	}
 
+
 	public void setIdbeneficiario(Long idbeneficiario) {
 		this.idbeneficiario = idbeneficiario;
 	}
+
 
 	public int getIdcamp() {
 		return idcamp;
 	}
 
+
 	public void setIdcamp(int idcamp) {
 		this.idcamp = idcamp;
 	}
+
 
 	public int getIdusu() {
 		return idusu;
 	}
 
+
 	public void setIdusu(int idusu) {
 		this.idusu = idusu;
 	}
+
 
 	public String getObs() {
 		return obs;
 	}
 
+
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
+
 
 	public Date getDtcad() {
 		return dtcad;
 	}
 
+
 	public void setDtcad(Date dtcad) {
 		this.dtcad = dtcad;
 	}
+
 
 	public String getDelet() {
 		return delet;
 	}
 
+
 	public void setDelet(String delet) {
 		this.delet = delet;
 	}
+
+
+	public String getNomeBeneficiario() {
+		return nomeBeneficiario;
+	}
+
+
+	public void setNomeBeneficiario(String nomeBeneficiario) {
+		this.nomeBeneficiario = nomeBeneficiario;
+	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(delet, dtcad, idbeneficiario, idcamp, idusu, obs);
+		return Objects.hash(delet, dtcad, idbeneficiario, idcamp, idusu, nomeBeneficiario, obs);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -118,8 +150,10 @@ public class Beneficiario implements Serializable{
 		Beneficiario other = (Beneficiario) obj;
 		return Objects.equals(delet, other.delet) && Objects.equals(dtcad, other.dtcad)
 				&& Objects.equals(idbeneficiario, other.idbeneficiario) && idcamp == other.idcamp
-				&& idusu == other.idusu && Objects.equals(obs, other.obs);
+				&& idusu == other.idusu && Objects.equals(nomeBeneficiario, other.nomeBeneficiario)
+				&& Objects.equals(obs, other.obs);
 	}
+
 	
 	
 
