@@ -3,7 +3,7 @@ package br.com.impacta.controller;
 import java.util.Date;
 import java.util.List;
 
-import br.com.impacta.model.Beneficiario;
+
 import br.com.impacta.model.Colabora;
 import br.com.impacta.repository.ColaboraRepository;
 import br.com.impacta.servicos.ColaboraServicos;
@@ -31,18 +31,21 @@ public class ColaboraController {
 	@Operation(summary="Para criar Colaboraçao basta informar idcomp,idusu,obs ")
 	
 	@PostMapping("/cria_Colabora/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}")	
-	public Colabora criaColaboracao(@PathVariable("criaColaboracao") String nomeBeneficiario,
+	public Colabora criaColaboracao(@PathVariable("nomeBeneficiario") String nomeBeneficiario,
 			@PathVariable("Obs") String obs,
-			@PathVariable("Idcamp") String idCamp,
-			@PathVariable("Idusu") String idUsu,
+			@PathVariable("Idcamp") int idCamp,
+			@PathVariable("Idusu") int idUsu,
+			@PathVariable("email") String email,
 			@PathVariable("tipo") String tipo) {
 		
 	 var dt =  new Date();
-	 Beneficiario col = new Beneficiario();
-		col.setnomeBeneficiario(nomeBeneficiario);
-		col.getObs(obs);
-		col.getIdcamp(idCamp);
-		col.getIdusu(idUsu);
+	 Colabora col = new Colabora();
+		col.setNomeBeneficiario(nomeBeneficiario);
+		col.setObs(obs);
+		col.setIdcamp(idCamp);
+		col.setIdusu(idUsu);
+		col.setEmail(email);
+		col.setTipo(tipo);
 		col.setDelet(" ");
 		col.setDtcad(dt);
 		
