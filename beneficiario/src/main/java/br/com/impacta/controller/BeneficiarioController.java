@@ -32,20 +32,17 @@ public class BeneficiarioController {
 	
 	@Operation(summary="Para criar Beneficiario basta informar idcomp,idusu,obs "
 			  )
-	@PostMapping("/criaBeneficiario/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}")	
-	public Beneficiario criaBeneficiario(@PathVariable("nomeBeneficiario") String nomeBeneficiario,
-			@PathVariable("Obs") String obs,
+	@PostMapping("/criaBeneficiario/{nomeBeneficiario}/{Idcamp}/{Idusu}")	
+	public Beneficiario criaBeneficiario(
+			@PathVariable("nomeBeneficiario") String nomeBeneficiario,
 			@PathVariable("Idcamp") int idCamp,
-			@PathVariable("Idusu") int idUsu,
-			@PathVariable("tipo") String tipo) {
+			@PathVariable("Idusu") int idUsu) {
 		
 	 var dt =  new Date();
-	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	 Date result = null;
-	// result  = format.parse(dtEvento);
+	 
 	 Beneficiario col = new Beneficiario();
 		col.setNomeBeneficiario(nomeBeneficiario);
-		col.setObs(obs);
+		col.setObs(" ");
 		col.setIdcamp(idCamp);
 		col.setIdusu(idUsu);
 		col.setDelet(" ");

@@ -33,13 +33,11 @@ public class ColaboraController {
 	
 	@Operation(summary="Para criar Colaboraçao basta informar idcomp,idusu,obs ")
 	
-	@PostMapping("/cria_Colabora/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}/{nomeColaborador}/{telefone}")	
-	public Colabora criaColaboracao(@PathVariable("nomeColaborador") String nomeBeneficiario,
-			@PathVariable("Obs") String obs,
+	@PostMapping("/cria_Colabora/{Idcamp}/{Idusu}/{email}/{nomeColaborador}/{telefone}")	
+	public Colabora criaColaboracao(
 			@PathVariable("Idcamp") int idCamp,
 			@PathVariable("Idusu") int idUsu,
 			@PathVariable("email") String email,
-			@PathVariable("tipo") String tipo,
 			@PathVariable("nomeColaborador") String nomeColaborador,
 			@PathVariable("telefone") String telefone)
 			 {
@@ -47,11 +45,11 @@ public class ColaboraController {
 	 var dt =  new Date();
 	 Colabora col = new Colabora();
 		col.setNomeColaborador(nomeColaborador);
-		col.setObs(obs);
+		col.setObs(" ");
 		col.setIdcamp(idCamp);
 		col.setIdusu(idUsu);
 		col.setEmail(email);
-		col.setTipo(tipo);
+		col.setTipo(" ");
 		col.setDelet(" ");
 		col.setDtcad(dt);
 		col.setNomeColaborador(nomeColaborador);
