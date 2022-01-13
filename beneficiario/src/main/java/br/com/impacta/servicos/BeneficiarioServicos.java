@@ -3,6 +3,7 @@ package br.com.impacta.servicos;
 import java.util.Date;
 import java.util.List;
 import br.com.impacta.model.Beneficiario;
+
 import br.com.impacta.repository.BeneficiarioRepository;
 
 public class BeneficiarioServicos {
@@ -36,6 +37,23 @@ public class BeneficiarioServicos {
 		
 		
 	}
+	
+	public List<Beneficiario> pesqALl() {
+		var ret = repository.findAll();
+		return ret;
+	}
+
+	public Beneficiario pesqPorId(Long id) {
+		var ret = repository.findById(id).orElseThrow();
+		return ret;
+	}
+
+	public List<Beneficiario> pesqPorUsuario(int id) {
+		var ret = repository.findByIdusu(id);
+		return ret;
+	}
+	
+	
 	
 	
 }

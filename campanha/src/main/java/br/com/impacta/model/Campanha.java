@@ -51,6 +51,9 @@ public class Campanha implements Serializable {
 	private Date dtevento;
 	
 	@Column(nullable = true)
+	private String horaevento;
+	
+	@Column(nullable = true)
 	private Date dtcad;
 	
 	@Column(nullable = true)
@@ -63,20 +66,21 @@ public class Campanha implements Serializable {
 		super();
 	}
 
-	public Campanha(Long idcampanha, String nomeCamp, String descrao, String nomeResponsavel, Long idCategoria,
-			String email, String telefone, String site, String local, Date dtEvento, Date dtcad, int idusu,
-			String delet) {
+	public Campanha(Long idcampanha, String nomecamp, String descricao, String nomeresponsavel, Long idcategoria,
+			String email, String telefone, String site, String local, Date dtevento, String horaevento, Date dtcad,
+			int idusu, String delet) {
 		super();
 		this.idcampanha = idcampanha;
-		this.nomecamp = nomeCamp;
-		this.descricao = descrao;
-		this.nomeresponsavel = nomeResponsavel;
-		this.idcategoria = idCategoria;
+		this.nomecamp = nomecamp;
+		this.descricao = descricao;
+		this.nomeresponsavel = nomeresponsavel;
+		this.idcategoria = idcategoria;
 		this.email = email;
 		this.telefone = telefone;
 		this.site = site;
 		this.local = local;
-		this.dtevento = dtEvento;
+		this.dtevento = dtevento;
+		this.horaevento = horaevento;
 		this.dtcad = dtcad;
 		this.idusu = idusu;
 		this.delet = delet;
@@ -90,12 +94,12 @@ public class Campanha implements Serializable {
 		this.idcampanha = idcampanha;
 	}
 
-	public String getNomeCamp() {
+	public String getNomecamp() {
 		return nomecamp;
 	}
 
-	public void setNomeCamp(String nomeCamp) {
-		this.nomecamp = nomeCamp;
+	public void setNomecamp(String nomecamp) {
+		this.nomecamp = nomecamp;
 	}
 
 	public String getDescricao() {
@@ -106,20 +110,20 @@ public class Campanha implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getNomeResponsavel() {
+	public String getNomeresponsavel() {
 		return nomeresponsavel;
 	}
 
-	public void setNomeResponsavel(String nomeResponsavel) {
-		this.nomeresponsavel = nomeResponsavel;
+	public void setNomeresponsavel(String nomeresponsavel) {
+		this.nomeresponsavel = nomeresponsavel;
 	}
 
-	public Long getIdCategoria() {
+	public Long getIdcategoria() {
 		return idcategoria;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
-		this.idcategoria = idCategoria;
+	public void setIdcategoria(Long idcategoria) {
+		this.idcategoria = idcategoria;
 	}
 
 	public String getEmail() {
@@ -154,12 +158,20 @@ public class Campanha implements Serializable {
 		this.local = local;
 	}
 
-	public Date getDtEvento() {
+	public Date getDtevento() {
 		return dtevento;
 	}
 
-	public void setDtEvento(Date dtEvento) {
-		this.dtevento = dtEvento;
+	public void setDtevento(Date dtevento) {
+		this.dtevento = dtevento;
+	}
+
+	public String getHoraevento() {
+		return horaevento;
+	}
+
+	public void setHoraevento(String horaevento) {
+		this.horaevento = horaevento;
 	}
 
 	public Date getDtcad() {
@@ -192,8 +204,8 @@ public class Campanha implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(delet, descricao, dtevento, dtcad, email, idcategoria, idcampanha, idusu, local, nomecamp,
-				nomeresponsavel, site, telefone);
+		return Objects.hash(delet, descricao, dtcad, dtevento, email, horaevento, idcampanha, idcategoria, idusu, local,
+				nomecamp, nomeresponsavel, site, telefone);
 	}
 
 	@Override
@@ -206,13 +218,14 @@ public class Campanha implements Serializable {
 			return false;
 		Campanha other = (Campanha) obj;
 		return Objects.equals(delet, other.delet) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(dtevento, other.dtevento) && Objects.equals(dtcad, other.dtcad)
-				&& Objects.equals(email, other.email) && Objects.equals(idcategoria, other.idcategoria)
-				&& Objects.equals(idcampanha, other.idcampanha) && idusu == other.idusu
-				&& Objects.equals(local, other.local) && Objects.equals(nomecamp, other.nomecamp)
-				&& Objects.equals(nomeresponsavel, other.nomeresponsavel) && Objects.equals(site, other.site)
-				&& Objects.equals(telefone, other.telefone);
+				&& Objects.equals(dtcad, other.dtcad) && Objects.equals(dtevento, other.dtevento)
+				&& Objects.equals(email, other.email) && Objects.equals(horaevento, other.horaevento)
+				&& Objects.equals(idcampanha, other.idcampanha) && Objects.equals(idcategoria, other.idcategoria)
+				&& idusu == other.idusu && Objects.equals(local, other.local)
+				&& Objects.equals(nomecamp, other.nomecamp) && Objects.equals(nomeresponsavel, other.nomeresponsavel)
+				&& Objects.equals(site, other.site) && Objects.equals(telefone, other.telefone);
 	}
+
 	
 	
 	

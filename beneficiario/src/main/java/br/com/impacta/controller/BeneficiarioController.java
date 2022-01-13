@@ -1,5 +1,7 @@
 package br.com.impacta.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import br.com.impacta.model.Beneficiario;
@@ -40,7 +42,7 @@ public class BeneficiarioController {
 	 var dt =  new Date();
 	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	 Date result = null;
-	 result  = format.parse(dtEvento);
+	// result  = format.parse(dtEvento);
 	 Beneficiario col = new Beneficiario();
 		col.setNomeBeneficiario(nomeBeneficiario);
 		col.setObs(obs);
@@ -102,8 +104,8 @@ public class BeneficiarioController {
 			var a =e.getMessage();
 			var r=a;
 			Beneficiario catServ = new Beneficiario();
-			col.setNomeBeneficiario("Não encontrou Beneficiario por ID");
-			return col;
+			catServ.setNomeBeneficiario("Não encontrou Beneficiario por ID");
+			return catServ;
 			
 		}
 		

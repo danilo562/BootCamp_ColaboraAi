@@ -2,6 +2,7 @@ package br.com.impacta.servicos;
 import java.util.Date;
 import java.util.List;
 
+
 import br.com.impacta.model.Colabora;
 import br.com.impacta.repository.ColaboraRepository;
 
@@ -36,6 +37,23 @@ public class ColaboraServicos {
 				}
 		
 		
+	}
+	
+	
+	
+	public List<Colabora> pesqALl() {
+		var ret = repository.findAll();
+		return ret;
+	}
+
+	public Colabora pesqPorId(Long id) {
+		var ret = repository.findById(id).orElseThrow();
+		return ret;
+	}
+
+	public List<Colabora> pesqPorUsuario(int id) {
+		var ret = repository.findByIdusu(id);
+		return ret;
 	}
 	
 	

@@ -38,7 +38,10 @@ public class Colabora implements Serializable {
 	private String delet;
 	
 	@Column(nullable = true)
-	private String nomeBeneficiario;
+	private String nomeColaborador;
+	
+	@Column(nullable = true)
+	private String telefone;
 	
 	@Column(nullable = true)
 	private String email;
@@ -55,7 +58,7 @@ public class Colabora implements Serializable {
 
 
 	public Colabora(Long idcolabora, int idcamp, int idusu, String obs, Date dtcad, String delet,
-			String nomeBeneficiario, String email, String tipo) {
+			String nomeColaborador, String telefone, String email, String tipo) {
 		super();
 		this.idcolabora = idcolabora;
 		this.idcamp = idcamp;
@@ -63,7 +66,8 @@ public class Colabora implements Serializable {
 		this.obs = obs;
 		this.dtcad = dtcad;
 		this.delet = delet;
-		this.nomeBeneficiario = nomeBeneficiario;
+		this.nomeColaborador = nomeColaborador;
+		this.telefone = telefone;
 		this.email = email;
 		this.tipo = tipo;
 	}
@@ -142,14 +146,26 @@ public class Colabora implements Serializable {
 
 
 
-	public String getNomeBeneficiario() {
-		return nomeBeneficiario;
+	public String getNomeColaborador() {
+		return nomeColaborador;
 	}
 
 
 
-	public void setNomeBeneficiario(String nomeBeneficiario) {
-		this.nomeBeneficiario = nomeBeneficiario;
+	public void setNomeColaborador(String nomeColaborador) {
+		this.nomeColaborador = nomeColaborador;
+	}
+
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 
@@ -186,7 +202,7 @@ public class Colabora implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(delet, dtcad, email, idcamp, idcolabora, idusu, nomeBeneficiario, obs, tipo);
+		return Objects.hash(delet, dtcad, email, idcamp, idcolabora, idusu, nomeColaborador, obs, telefone, tipo);
 	}
 
 
@@ -203,9 +219,10 @@ public class Colabora implements Serializable {
 		return Objects.equals(delet, other.delet) && Objects.equals(dtcad, other.dtcad)
 				&& Objects.equals(email, other.email) && idcamp == other.idcamp
 				&& Objects.equals(idcolabora, other.idcolabora) && idusu == other.idusu
-				&& Objects.equals(nomeBeneficiario, other.nomeBeneficiario) && Objects.equals(obs, other.obs)
-				&& Objects.equals(tipo, other.tipo);
+				&& Objects.equals(nomeColaborador, other.nomeColaborador) && Objects.equals(obs, other.obs)
+				&& Objects.equals(telefone, other.telefone) && Objects.equals(tipo, other.tipo);
 	}
+
 
 
 

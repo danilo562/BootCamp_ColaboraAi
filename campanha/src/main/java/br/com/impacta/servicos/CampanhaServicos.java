@@ -20,15 +20,15 @@ public class CampanhaServicos {
 		
 		var dt =  new Date();
 		Campanha cap =new Campanha();
-		cap.setNomeCamp(nomeCamp);
+		cap.setNomecamp(nomeCamp);
 		cap.setDescricao(descricao);
-		cap.setNomeResponsavel(nomeResponsavel);
-		cap.setIdCategoria(idCategoria);
+		cap.setNomeresponsavel(nomeResponsavel);
+		cap.setIdcategoria(idCategoria);
 		cap.setEmail(email);
 		cap.setTelefone(telefone);
 		cap.setSite(site);
 		cap.setLocal(local);
-		cap.setDtEvento(dtEvento);
+		cap.setDtevento(dtEvento);
 		cap.setIdusu(idusu);
 		cap.setDtcad(dt);
 		cap.setDelet(" ");

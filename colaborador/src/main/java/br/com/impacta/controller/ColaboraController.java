@@ -1,12 +1,14 @@
 package br.com.impacta.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.impacta.model.Beneficiario;
+
 import br.com.impacta.model.Colabora;
 import br.com.impacta.repository.ColaboraRepository;
-import br.com.impacta.servicos.BeneficiarioServicos;
+
 import br.com.impacta.servicos.ColaboraServicos;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +33,16 @@ public class ColaboraController {
 	
 	@Operation(summary="Para criar Colaboraçao basta informar idcomp,idusu,obs ")
 	
-	@PostMapping("/cria_Colabora/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}")	
+	@PostMapping("/cria_Colabora/{nomeBeneficiario}/{Obs}/{Idcamp}/{Idusu}/{email}/{tipo}/{nomeColaborador}/{telefone}")	
 	public Colabora criaColaboracao(@PathVariable("nomeColaborador") String nomeBeneficiario,
 			@PathVariable("Obs") String obs,
 			@PathVariable("Idcamp") int idCamp,
 			@PathVariable("Idusu") int idUsu,
 			@PathVariable("email") String email,
-			@PathVariable("tipo") String tipo) {
+			@PathVariable("tipo") String tipo,
+			@PathVariable("nomeColaborador") String nomeColaborador,
+			@PathVariable("telefone") String telefone)
+			 {
 		
 	 var dt =  new Date();
 	 Colabora col = new Colabora();
@@ -49,12 +54,14 @@ public class ColaboraController {
 		col.setTipo(tipo);
 		col.setDelet(" ");
 		col.setDtcad(dt);
+		col.setNomeColaborador(nomeColaborador);
+		col.setTelefone(telefone);
 		
 		
-		 var dt =  new Date();
-		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		 Date result = null;
-		 result  = format.parse(dtEvento);
+		// var dt =  new Date();
+		// SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		// Date result = null;
+		// result  = format.parse(dtEvento);
 		
 		try {
 		var ret = repository.save(col);
@@ -108,8 +115,8 @@ public class ColaboraController {
 			var a =e.getMessage();
 			var r=a;
 			Colabora catServ = new Colabora();
-			col.setNomeColaborador("Não encontrou Colaborador por ID");
-			return col;
+			catServ.setNomeColaborador("Não encontrou Colaborador por ID");
+			return catServ;
 			
 		}
 		
